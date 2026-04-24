@@ -1,25 +1,24 @@
 {
   "type": "FeatureCollection",
-  "_mock": true,
-  "_notice": "DADOS ILUSTRATIVOS - coordenadas e nomes nao correspondem a realidade. Ver public/data/README.md.",
+  "_notice": "Coordenadas APROXIMADAS - validar/corrigir via Editor (modo dev) ou substituir por dados oficiais (PMVR, OSM, MapBiomas).",
   "features": [
     {
       "type": "Feature",
       "properties": {
         "id": "ga-001",
-        "name": "Area Verde 1 (mock)",
+        "name": "Parque Aterrado",
         "layer": "green-areas",
         "category": "parque urbano",
-        "description": "Poligono ilustrativo de area verde - substituir por dado real."
+        "description": "Parque central no bairro Aterrado. Posicao aproximada - validar."
       },
       "geometry": {
         "type": "Polygon",
         "coordinates": [[
-          [-44.0978, -22.5235],
-          [-44.0962, -22.5235],
-          [-44.0958, -22.5252],
-          [-44.0982, -22.5252],
-          [-44.0978, -22.5235]
+          [-44.1078, -22.5215],
+          [-44.1052, -22.5210],
+          [-44.1045, -22.5238],
+          [-44.1072, -22.5245],
+          [-44.1078, -22.5215]
         ]]
       }
     },
@@ -27,19 +26,19 @@
       "type": "Feature",
       "properties": {
         "id": "ga-002",
-        "name": "Area Verde 2 (mock)",
+        "name": "Bosque Niemeyer",
         "layer": "green-areas",
         "category": "bosque",
-        "description": "Poligono ilustrativo de bosque - substituir por dado real."
+        "description": "Area arborizada associada ao conjunto Niemeyer. Posicao aproximada - validar."
       },
       "geometry": {
         "type": "Polygon",
         "coordinates": [[
-          [-44.1100, -22.5175],
-          [-44.1075, -22.5170],
-          [-44.1068, -22.5195],
-          [-44.1095, -22.5198],
-          [-44.1100, -22.5175]
+          [-44.1145, -22.5165],
+          [-44.1115, -22.5160],
+          [-44.1108, -22.5188],
+          [-44.1138, -22.5192],
+          [-44.1145, -22.5165]
         ]]
       }
     },
@@ -47,19 +46,19 @@
       "type": "Feature",
       "properties": {
         "id": "ga-003",
-        "name": "Area Verde 3 (mock)",
+        "name": "Praca Brasil",
         "layer": "green-areas",
         "category": "praca",
-        "description": "Poligono ilustrativo de praca - substituir por dado real."
+        "description": "Praca central. Posicao aproximada - validar."
       },
       "geometry": {
         "type": "Polygon",
         "coordinates": [[
-          [-44.0892, -22.5188],
-          [-44.0878, -22.5188],
-          [-44.0878, -22.5198],
-          [-44.0892, -22.5198],
-          [-44.0892, -22.5188]
+          [-44.1018, -22.5196],
+          [-44.1004, -22.5195],
+          [-44.1003, -22.5208],
+          [-44.1017, -22.5209],
+          [-44.1018, -22.5196]
         ]]
       }
     },
@@ -67,19 +66,19 @@
       "type": "Feature",
       "properties": {
         "id": "ga-004",
-        "name": "Area Verde 4 (mock)",
+        "name": "Floresta da Cicuta",
         "layer": "green-areas",
         "category": "reserva ambiental",
-        "description": "Poligono ilustrativo de reserva - substituir por dado real."
+        "description": "Fragmento preservado de Mata Atlantica entre VR e Barra Mansa. Posicao aproximada - validar com dados ICMBio/INEA."
       },
       "geometry": {
         "type": "Polygon",
         "coordinates": [[
-          [-44.0750, -22.5050],
-          [-44.0680, -22.5045],
-          [-44.0670, -22.5095],
-          [-44.0735, -22.5105],
-          [-44.0750, -22.5050]
+          [-44.0680, -22.4980],
+          [-44.0560, -22.4970],
+          [-44.0535, -22.5050],
+          [-44.0670, -22.5070],
+          [-44.0680, -22.4980]
         ]]
       }
     }

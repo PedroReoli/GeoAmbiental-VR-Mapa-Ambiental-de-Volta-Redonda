@@ -1,27 +1,28 @@
 {
   "type": "FeatureCollection",
-  "_mock": true,
-  "_notice": "DADOS ILUSTRATIVOS - coordenadas e nomes nao correspondem a realidade. Ver public/data/README.md.",
+  "_notice": "Tracado APROXIMADO - validar/corrigir via Editor (modo dev) ou substituir por hidrografia oficial (ANA, OSM).",
   "features": [
     {
       "type": "Feature",
       "properties": {
         "id": "wt-001",
-        "name": "Curso d'agua 1 (mock)",
+        "name": "Rio Paraiba do Sul",
         "layer": "water",
         "category": "rio principal",
-        "description": "Linha ilustrativa de rio - substituir por dado real (ANA / OSM)."
+        "description": "Curso principal que atravessa o municipio. Tracado aproximado - validar com dados ANA."
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
-          [-44.1310, -22.4920],
-          [-44.1180, -22.4995],
-          [-44.1050, -22.5085],
-          [-44.0930, -22.5170],
-          [-44.0810, -22.5235],
-          [-44.0680, -22.5300],
-          [-44.0540, -22.5370]
+          [-44.1480, -22.5345],
+          [-44.1380, -22.5290],
+          [-44.1255, -22.5235],
+          [-44.1130, -22.5180],
+          [-44.1010, -22.5135],
+          [-44.0890, -22.5095],
+          [-44.0760, -22.5060],
+          [-44.0620, -22.5025],
+          [-44.0480, -22.4990]
         ]
       }
     },
@@ -29,18 +30,19 @@
       "type": "Feature",
       "properties": {
         "id": "wt-002",
-        "name": "Curso d'agua 2 (mock)",
+        "name": "Corrego Cachoeirinha",
         "layer": "water",
         "category": "corrego",
-        "description": "Linha ilustrativa de corrego - substituir por dado real."
+        "description": "Afluente urbano. Tracado aproximado - validar."
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
-          [-44.1020, -22.5310],
-          [-44.0980, -22.5260],
-          [-44.0945, -22.5210],
-          [-44.0920, -22.5180]
+          [-44.1080, -22.5340],
+          [-44.1050, -22.5295],
+          [-44.1020, -22.5250],
+          [-44.0990, -22.5210],
+          [-44.0985, -22.5175]
         ]
       }
     },
@@ -48,18 +50,19 @@
       "type": "Feature",
       "properties": {
         "id": "wt-003",
-        "name": "Curso d'agua 3 (mock)",
+        "name": "Corrego Brandao",
         "layer": "water",
         "category": "corrego",
-        "description": "Linha ilustrativa de corrego - substituir por dado real."
+        "description": "Curso d'agua urbano canalizado em parte do percurso. Tracado aproximado - validar."
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
-          [-44.0840, -22.5380],
-          [-44.0810, -22.5310],
-          [-44.0790, -22.5260],
-          [-44.0780, -22.5235]
+          [-44.0900, -22.5360],
+          [-44.0870, -22.5300],
+          [-44.0850, -22.5250],
+          [-44.0840, -22.5210],
+          [-44.0830, -22.5180]
         ]
       }
     }

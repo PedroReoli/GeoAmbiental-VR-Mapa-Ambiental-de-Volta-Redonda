@@ -1,33 +1,69 @@
-# Dados das Camadas — IMPORTANTE
+# Dados das Camadas
 
-> ⚠️ **Os GeoJSONs deste diretório são dados ILUSTRATIVOS / MOCK.**
->
-> Coordenadas, nomes e categorias **não correspondem à realidade cartográfica**
-> de Volta Redonda. Foram inseridos apenas para que a aplicação tenha algo a
-> renderizar durante o desenvolvimento da UI/UX.
+> ⚠️ As coordenadas atuais são **aproximadas**, baseadas em conhecimento geral
+> dos landmarks de Volta Redonda. **Devem ser validadas e corrigidas** —
+> use o editor visual descrito abaixo.
 
-## Para usar dados reais
+## Editor Visual (apenas em modo desenvolvimento)
 
-Substitua os arquivos abaixo mantendo o mesmo schema de `properties`:
+A aplicação inclui um editor de posicionamento que **só fica disponível em
+`npm run dev`**. Em build de produção o editor não é incluído.
 
-| Arquivo | Camada | Schema de properties |
-|---|---|---|
-| `green-areas.geojson` | Áreas verdes | `id`, `name`, `layer: "green-areas"`, `category`, `description` |
-| `water.geojson` | Hidrografia | `id`, `name`, `layer: "water"`, `category`, `description` |
-| `impact.geojson` | Impacto ambiental | `id`, `name`, `layer: "impact"`, `category`, `severity` (1–5), `description` |
-| `poi.geojson` | Pontos de interesse | `id`, `name`, `layer: "poi"`, `category`, `description` |
+### Como usar
 
-Os schemas estão tipados em [`src/shared/types/index.ts`](../../src/shared/types/index.ts).
+1. Rode o dev server: `npm run dev`
+2. No painel lateral, ative **"Modo edição"**
+3. **Arraste qualquer feature** (ponto, linha, polígono) para a posição correta
+4. As mudanças aparecem como pendentes na lista (uma camada pode ter várias)
+5. Clique em **"Salvar tudo"** — o backend dev escreve direto em `public/data/<layer>.geojson`
+6. Commit normalmente: `git add public/data/ && git commit -m "data: corrige posicao de X"`
 
-## Fontes recomendadas para substituição
+### Como achar a posição correta
 
-- **OpenStreetMap** (extração via Overpass Turbo, JOSM ou QGIS)
-- **GeoSampa / dados abertos municipais**
-- **MapBiomas** (cobertura vegetal)
-- **ANA — Agência Nacional de Águas** (hidrografia)
-- **IBAMA / INEA** (impactos ambientais oficiais)
+Algumas estratégias práticas:
 
-## Projeção
+- **Google Maps** — clica direito → "O que há aqui?" mostra latitude/longitude
+- **OpenStreetMap** — `https://www.openstreetmap.org/?mlat=<LAT>&mlon=<LON>`
+- **Cruzar referências** — endereço do landmark + busca no Google + comparar com OSM
+- **Imagens de satélite** — confirma forma do parque/área pelo contorno visível
 
-Todos os arquivos devem estar em **EPSG:4326** (lat/lon). A reprojeção para
-Web Mercator (EPSG:3857) é feita automaticamente pelo OpenLayers no carregamento.
+Para landmarks oficiais:
+- **Prefeitura de VR** — site oficial pode ter geolocalização
+- **OpenStreetMap (Overpass Turbo)** — extrair features oficiais por tipo
+- **MapBiomas** — cobertura vegetal e desmatamento
+- **ANA / SNIRH** — hidrografia oficial
+- **IBAMA / INEA** — dados de impacto ambiental
+
+### Sistema de coordenadas
+
+Todos os arquivos devem estar em **EPSG:4326** (lat/lon decimal).
+Formato GeoJSON usa `[longitude, latitude]` (lon primeiro, **não** lat).
+O OpenLayers reprojeta automaticamente para EPSG:3857 (Web Mercator) ao carregar.
+
+### Schema obrigatório por feature
+
+```jsonc
+{
+  "type": "Feature",
+  "properties": {
+    "id": "<unique-id>",        // obrigatório
+    "name": "<display name>",   // obrigatório
+    "layer": "<layer-id>",      // obrigatório, deve bater com a camada
+    "category": "<categoria>",  // opcional
+    "severity": 1-5,            // apenas para layer 'impact'
+    "description": "<texto>"    // opcional
+  },
+  "geometry": { ... }
+}
+```
+
+Tipos de tipo TypeScript em [`src/shared/types/index.ts`](../../src/shared/types/index.ts).
+
+## Arquivos
+
+| Arquivo | Camada | Geometria | Schema extra |
+|---|---|---|---|
+| `green-areas.geojson` | Áreas verdes | `Polygon` | — |
+| `water.geojson` | Hidrografia | `LineString` | — |
+| `impact.geojson` | Impacto ambiental | `Point` | `severity: 1-5` |
+| `poi.geojson` | Pontos de interesse | `Point` | — |

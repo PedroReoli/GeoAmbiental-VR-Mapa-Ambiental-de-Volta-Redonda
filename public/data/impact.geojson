@@ -1,81 +1,80 @@
 {
   "type": "FeatureCollection",
-  "_mock": true,
-  "_notice": "DADOS ILUSTRATIVOS - pontos, severidades e categorias sao ficticios. Ver public/data/README.md.",
+  "_notice": "Pontos APROXIMADOS para fins didaticos - validar/corrigir via Editor (modo dev) ou substituir por dados oficiais (IBAMA, INEA).",
   "features": [
     {
       "type": "Feature",
       "properties": {
         "id": "im-001",
-        "name": "Impacto 1 (mock)",
+        "name": "Complexo Industrial CSN",
         "layer": "impact",
         "category": "emissoes atmosfericas",
-        "severity": 4,
-        "description": "Ponto ilustrativo - substituir por dado real (IBAMA / INEA)."
+        "severity": 5,
+        "description": "Companhia Siderurgica Nacional - principal fonte de emissoes da regiao. Posicao aproximada do centro do complexo."
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-44.1150, -22.5095]
+        "coordinates": [-44.0890, -22.5295]
       }
     },
     {
       "type": "Feature",
       "properties": {
         "id": "im-002",
-        "name": "Impacto 2 (mock)",
+        "name": "Aterro Sanitario (referencia)",
         "layer": "impact",
         "category": "residuos solidos",
         "severity": 3,
-        "description": "Ponto ilustrativo - substituir por dado real."
+        "description": "Local de destinacao de residuos. Posicao aproximada - validar."
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-44.0825, -22.5350]
+        "coordinates": [-44.0640, -22.5380]
       }
     },
     {
       "type": "Feature",
       "properties": {
         "id": "im-003",
-        "name": "Impacto 3 (mock)",
+        "name": "Area de risco geotecnico",
         "layer": "impact",
         "category": "erosao",
-        "severity": 5,
-        "description": "Ponto ilustrativo - substituir por dado real."
+        "severity": 4,
+        "description": "Encosta com historico de movimentacao de massa (didatico). Posicao aproximada."
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-44.0610, -22.5180]
+        "coordinates": [-44.0530, -22.5180]
       }
     },
     {
       "type": "Feature",
       "properties": {
         "id": "im-004",
-        "name": "Impacto 4 (mock)",
+        "name": "Lancamento em corpo d'agua",
         "layer": "impact",
         "category": "qualidade da agua",
         "severity": 4,
-        "description": "Ponto ilustrativo - substituir por dado real."
+        "description": "Ponto de monitoramento de qualidade no Paraiba do Sul (didatico). Posicao aproximada."
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-44.0980, -22.5260]
+        "coordinates": [-44.1080, -22.5210]
       }
     },
     {
       "type": "Feature",
       "properties": {
         "id": "im-005",
-        "name": "Impacto 5 (mock)",
+        "name": "Supressao vegetal recente",
         "layer": "impact",
         "category": "supressao vegetal",
         "severity": 2,
-        "description": "Ponto ilustrativo - substituir por dado real."
+        "description": "Area com perda de cobertura identificada (didatico). Posicao aproximada."
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-44.0700, -22.5070]
+        "coordinates": [-44.0710, -22.5050]
       }
     }
   ]
