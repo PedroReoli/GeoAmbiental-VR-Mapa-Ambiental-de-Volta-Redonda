@@ -4,15 +4,23 @@ import type Feature from 'ol/Feature';
 import type { Geometry } from 'ol/geom';
 import type VectorLayer from 'ol/layer/Vector';
 import type VectorSource from 'ol/source/Vector';
-import type { LayerId } from '@/shared/constants';
+import type { DrawGeometryType, LayerId } from '@/shared/constants';
 
 export type SaveStatus = 'idle' | 'saving' | 'success' | 'error';
+
+/** Combo (camada + tipo de geometria) que o usuario escolheu desenhar. */
+export interface DrawingTool {
+  layerId: LayerId;
+  geometryType: DrawGeometryType;
+}
 
 interface EditorState {
   /** Toolbar visivel (controla render do EditorToolbar). */
   open: boolean;
-  /** Camada que esta sendo desenhada (null = nao esta desenhando). */
-  drawingLayer: LayerId | null;
+  /** Modal de gerenciamento de features visivel. */
+  manageOpen: boolean;
+  /** Tool de desenho atual (null = nao esta desenhando). */
+  drawingTool: DrawingTool | null;
   /** Feature recem desenhada aguardando metadados (modal aberto). */
   pendingFeature: Feature<Geometry> | null;
   /** Conjunto de camadas com mudancas nao salvas. */
@@ -35,8 +43,13 @@ interface EditorState {
   setOpen: (open: boolean) => void;
   toggleOpen: () => void;
 
-  startDrawing: (layerId: LayerId) => void;
+  setManageOpen: (open: boolean) => void;
+
+  startDrawing: (layerId: LayerId, geometryType: DrawGeometryType) => void;
   cancelDrawing: () => void;
+
+  /** Remove uma feature do source da camada e marca dirty. */
+  removeFeature: (layerId: LayerId, feature: Feature<Geometry>) => void;
 
   setPendingFeature: (feature: Feature<Geometry> | null) => void;
   /** Confirma a feature desenhada com os metadados informados pelo modal. */
@@ -56,7 +69,8 @@ interface EditorState {
 
 export const useEditorStore = create<EditorState>((set, get) => ({
   open: false,
-  drawingLayer: null,
+  manageOpen: false,
+  drawingTool: null,
   pendingFeature: null,
   dirty: new Set(),
   saveStatus: 'idle',
@@ -78,10 +92,26 @@ export const useEditorStore = create<EditorState>((set, get) => ({
   setOpen: (open) => set({ open }),
   toggleOpen: () => set((s) => ({ open: !s.open })),
 
-  startDrawing: (layerId) => set({ drawingLayer: layerId, pendingFeature: null }),
+  setManageOpen: (manageOpen) => set({ manageOpen }),
+
+  startDrawing: (layerId, geometryType) =>
+    set({ drawingTool: { layerId, geometryType }, pendingFeature: null }),
   cancelDrawing: () => {
     get().discardPendingFeature();
-    set({ drawingLayer: null });
+    set({ drawingTool: null });
+  },
+
+  removeFeature: (layerId, feature) => {
+    const state = get();
+    const layer = state.layerRefs.get(layerId);
+    const source = layer?.getSource();
+    if (!source) return;
+    try {
+      source.removeFeature(feature);
+    } catch {
+      return;
+    }
+    state.markDirty(layerId);
   },
 
   setPendingFeature: (feature) => set({ pendingFeature: feature }),
@@ -89,8 +119,9 @@ export const useEditorStore = create<EditorState>((set, get) => ({
   commitPendingFeature: ({ name, category, description, severity }) => {
     const state = get();
     const feature = state.pendingFeature;
-    const layerId = state.drawingLayer;
-    if (!feature || !layerId) return;
+    const tool = state.drawingTool;
+    if (!feature || !tool) return;
+    const layerId = tool.layerId;
 
     feature.set('id', String(feature.get('id') ?? `${layerId}-${Date.now()}`));
     feature.set('name', name);
@@ -101,15 +132,15 @@ export const useEditorStore = create<EditorState>((set, get) => ({
     feature.unset('__pending');
 
     state.markDirty(layerId);
-    set({ pendingFeature: null, drawingLayer: null });
+    set({ pendingFeature: null, drawingTool: null });
   },
 
   discardPendingFeature: () => {
     const state = get();
     const feature = state.pendingFeature;
-    const layerId = state.drawingLayer;
-    if (feature && layerId) {
-      const layer = state.layerRefs.get(layerId);
+    const tool = state.drawingTool;
+    if (feature && tool) {
+      const layer = state.layerRefs.get(tool.layerId);
       const source = layer?.getSource();
       if (source) {
         try {

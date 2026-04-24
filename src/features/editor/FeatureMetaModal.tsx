@@ -6,7 +6,7 @@ import styles from './FeatureMetaModal.module.css';
 
 export function FeatureMetaModal() {
   const pendingFeature = useEditorStore((s) => s.pendingFeature);
-  const drawingLayer = useEditorStore((s) => s.drawingLayer);
+  const drawingTool = useEditorStore((s) => s.drawingTool);
   const commit = useEditorStore((s) => s.commitPendingFeature);
   const discard = useEditorStore((s) => s.discardPendingFeature);
 
@@ -16,9 +16,10 @@ export function FeatureMetaModal() {
   const [severity, setSeverity] = useState(3);
   const nameRef = useRef<HTMLInputElement>(null);
 
-  const open = pendingFeature !== null && drawingLayer !== null;
-  const meta = drawingLayer ? LAYERS.find((l) => l.id === drawingLayer) : null;
-  const isImpact = drawingLayer === LAYER_IDS.IMPACT;
+  const open = pendingFeature !== null && drawingTool !== null;
+  const meta = drawingTool ? LAYERS.find((l) => l.id === drawingTool.layerId) : null;
+  const isImpact = drawingTool?.layerId === LAYER_IDS.IMPACT;
+  const drawnGeometry = drawingTool?.geometryType ?? null;
 
   // Reset form sempre que abre um novo
   useEffect(() => {
@@ -59,9 +60,9 @@ export function FeatureMetaModal() {
         <span>
           Camada: <strong style={{ color: accentColor }}>{meta.label}</strong>
           {' · '}
-          {meta.geometryType === 'Polygon' && 'Polígono fechado'}
-          {meta.geometryType === 'LineString' && 'Linha'}
-          {meta.geometryType === 'Point' && 'Ponto'}
+          {drawnGeometry === 'Polygon' && 'Polígono fechado'}
+          {drawnGeometry === 'LineString' && 'Linha'}
+          {drawnGeometry === 'Point' && 'Ponto'}
         </span>
       }
       accentColor={accentColor}

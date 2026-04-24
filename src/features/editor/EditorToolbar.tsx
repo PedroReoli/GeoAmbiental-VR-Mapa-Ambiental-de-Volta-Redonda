@@ -1,25 +1,32 @@
 import { useEffect, useState } from 'react';
 import { Button, Spinner, Badge } from '@/shared/components';
-import { LAYERS, type LayerId } from '@/shared/constants';
+import {
+  GEOMETRY_LABEL,
+  LAYERS,
+  type DrawGeometryType,
+  type LayerId,
+} from '@/shared/constants';
 import { cx } from '@/shared/utils/classnames';
 import { useEditorStore } from './editorStore';
 import { useEditorDraw } from './useEditorDraw';
 import { saveLayer } from './saveLayer';
 import { FeatureMetaModal } from './FeatureMetaModal';
+import { ManageFeaturesModal } from './ManageFeaturesModal';
 import styles from './EditorToolbar.module.css';
 
 export function EditorToolbar() {
-  // Anexa Draw quando drawingLayer != null
+  // Anexa Draw quando drawingTool != null
   useEditorDraw();
 
   const open = useEditorStore((s) => s.open);
-  const drawingLayer = useEditorStore((s) => s.drawingLayer);
+  const drawingTool = useEditorStore((s) => s.drawingTool);
   const dirty = useEditorStore((s) => s.dirty);
   const saveStatus = useEditorStore((s) => s.saveStatus);
   const saveError = useEditorStore((s) => s.saveError);
   const lastSavedAt = useEditorStore((s) => s.lastSavedAt);
   const startDrawing = useEditorStore((s) => s.startDrawing);
   const cancelDrawing = useEditorStore((s) => s.cancelDrawing);
+  const setManageOpen = useEditorStore((s) => s.setManageOpen);
   const clearDirty = useEditorStore((s) => s.clearDirty);
   const setSaveStatus = useEditorStore((s) => s.setSaveStatus);
 
@@ -60,7 +67,12 @@ export function EditorToolbar() {
   }
 
   if (!open) {
-    return <FeatureMetaModal />;
+    return (
+      <>
+        <FeatureMetaModal />
+        <ManageFeaturesModal />
+      </>
+    );
   }
 
   return (
@@ -69,23 +81,29 @@ export function EditorToolbar() {
         <div className={styles.section}>
           <span className={styles.sectionLabel}>Adicionar</span>
           <div className={styles.layerButtons}>
-            {LAYERS.map((layer) => (
-              <LayerButton
-                key={layer.id}
-                id={layer.id}
-                active={drawingLayer === layer.id}
-                onClick={() => startDrawing(layer.id)}
-              />
-            ))}
+            {LAYERS.flatMap((layer) =>
+              layer.geometryTypes.map((geomType) => (
+                <DrawToolButton
+                  key={`${layer.id}-${geomType}`}
+                  layerId={layer.id}
+                  geometryType={geomType}
+                  active={
+                    drawingTool?.layerId === layer.id &&
+                    drawingTool.geometryType === geomType
+                  }
+                  onClick={() => startDrawing(layer.id, geomType)}
+                />
+              )),
+            )}
           </div>
         </div>
 
-        {drawingLayer && (
+        {drawingTool && (
           <>
             <div className={styles.divider} aria-hidden />
             <div className={styles.drawingHint}>
               <span className={styles.dot} aria-hidden />
-              <DrawingInstruction />
+              <DrawingInstruction geometryType={drawingTool.geometryType} />
               <Button size="sm" variant="ghost" onClick={cancelDrawing}>
                 Cancelar
               </Button>
@@ -96,8 +114,26 @@ export function EditorToolbar() {
         <div className={styles.spacer} />
 
         <div className={styles.saveSection}>
+          <button
+            type="button"
+            className={styles.manageButton}
+            onClick={() => setManageOpen(true)}
+            title="Listar e remover features existentes"
+          >
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" aria-hidden>
+              <path
+                d="M3 6h18M3 12h18M3 18h18"
+                stroke="currentColor"
+                strokeWidth="1.8"
+                strokeLinecap="round"
+              />
+            </svg>
+            Gerenciar
+          </button>
           {dirty.size > 0 && (
-            <Badge tone="warning">{dirty.size} {dirty.size === 1 ? 'pendente' : 'pendentes'}</Badge>
+            <Badge tone="warning">
+              {dirty.size} {dirty.size === 1 ? 'pendente' : 'pendentes'}
+            </Badge>
           )}
           {saveStatus === 'success' && savedAgo && (
             <span className={styles.savedMsg}>Salvo {savedAgo}</span>
@@ -119,20 +155,23 @@ export function EditorToolbar() {
         </div>
       </div>
       <FeatureMetaModal />
+      <ManageFeaturesModal />
     </>
   );
 }
 
-function LayerButton({
-  id,
+function DrawToolButton({
+  layerId,
+  geometryType,
   active,
   onClick,
 }: {
-  id: LayerId;
+  layerId: LayerId;
+  geometryType: DrawGeometryType;
   active: boolean;
   onClick: () => void;
 }) {
-  const meta = LAYERS.find((l) => l.id === id);
+  const meta = LAYERS.find((l) => l.id === layerId);
   if (!meta) return null;
   const color = `var(${meta.colorVar})`;
   return (
@@ -145,29 +184,19 @@ function LayerButton({
     >
       <span className={styles.layerSwatch} style={{ backgroundColor: color }} aria-hidden />
       <span className={styles.layerLabel}>{meta.label}</span>
-      <span className={styles.layerGeom}>
-        {meta.geometryType === 'Polygon' && 'área'}
-        {meta.geometryType === 'LineString' && 'linha'}
-        {meta.geometryType === 'Point' && 'ponto'}
-      </span>
+      <span className={styles.layerGeom}>{GEOMETRY_LABEL[geometryType]}</span>
     </button>
   );
 }
 
-function DrawingInstruction() {
-  const drawingLayer = useEditorStore((s) => s.drawingLayer);
-  if (!drawingLayer) return null;
-  const meta = LAYERS.find((l) => l.id === drawingLayer);
-  if (!meta) return null;
-
+function DrawingInstruction({ geometryType }: { geometryType: DrawGeometryType }) {
   let text = '';
-  if (meta.geometryType === 'Point') {
+  if (geometryType === 'Point') {
     text = 'Clique no mapa para posicionar o ponto';
-  } else if (meta.geometryType === 'LineString') {
+  } else if (geometryType === 'LineString') {
     text = 'Clique para adicionar vertices · dblclick para finalizar';
   } else {
-    text = 'Clique para adicionar vertices · dblclick ou clique no inicio para fechar';
+    text = 'Clique para ligar os pontos · dblclick para fechar a area';
   }
-
   return <span className={styles.instructionText}>{text}</span>;
 }
