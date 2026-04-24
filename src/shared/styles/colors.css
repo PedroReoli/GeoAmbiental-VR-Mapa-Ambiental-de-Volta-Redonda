@@ -1,0 +1,108 @@
+/* ============================================================
+   PALETA — GeoAmbiental VR
+   Tema: ambiental (verde mata + azul agua + neutros frios)
+   ============================================================ */
+
+:root {
+  /* Forest — verde mata (primaria) */
+  --color-forest-50: #f0f9f4;
+  --color-forest-100: #d8f3dc;
+  --color-forest-200: #b7e4c7;
+  --color-forest-300: #95d5b2;
+  --color-forest-400: #74c69d;
+  --color-forest-500: #52b788;
+  --color-forest-600: #40916c;
+  --color-forest-700: #2d6a4f;
+  --color-forest-800: #1b4332;
+  --color-forest-900: #081c15;
+
+  /* Water — azul agua (secundaria) */
+  --color-water-50: #f0f9ff;
+  --color-water-100: #ade8f4;
+  --color-water-200: #90e0ef;
+  --color-water-300: #48cae4;
+  --color-water-400: #00b4d8;
+  --color-water-500: #0096c7;
+  --color-water-600: #0077b6;
+  --color-water-700: #023e8a;
+  --color-water-800: #03045e;
+  --color-water-900: #021547;
+
+  /* Earth — terra (areas verdes / pontos de interesse) */
+  --color-earth-50: #faf6f0;
+  --color-earth-100: #f1e7d3;
+  --color-earth-200: #e0cfa9;
+  --color-earth-300: #cdb37c;
+  --color-earth-400: #b8985a;
+  --color-earth-500: #9c7e44;
+  --color-earth-600: #7e6535;
+  --color-earth-700: #604c28;
+  --color-earth-800: #43361b;
+  --color-earth-900: #2a2110;
+
+  /* Ink — neutros frios (texto, surfaces, borders) */
+  --color-ink-50: #f8f9fa;
+  --color-ink-100: #e9ecef;
+  --color-ink-200: #dee2e6;
+  --color-ink-300: #ced4da;
+  --color-ink-400: #adb5bd;
+  --color-ink-500: #6c757d;
+  --color-ink-600: #495057;
+  --color-ink-700: #343a40;
+  --color-ink-800: #1f252b;
+  --color-ink-900: #0d1117;
+
+  /* Semanticas — alertas e estados */
+  --color-accent: #e76f51;
+  --color-warning: #e9c46a;
+  --color-danger: #d62828;
+  --color-success: #2d6a4f;
+
+  /* Backgrounds */
+  --color-bg-base: var(--color-ink-50);
+  --color-bg-surface: #ffffff;
+  --color-bg-raised: #ffffff;
+  --color-bg-overlay: rgba(13, 17, 23, 0.6);
+
+  /* Texto */
+  --color-text-primary: var(--color-ink-900);
+  --color-text-secondary: var(--color-ink-700);
+  --color-text-muted: var(--color-ink-500);
+  --color-text-inverse: var(--color-ink-50);
+
+  /* Bordas */
+  --color-border-subtle: var(--color-ink-100);
+  --color-border: var(--color-ink-200);
+  --color-border-strong: var(--color-ink-300);
+
+  /* Cores semanticas das camadas (usadas no OpenLayers e legenda) */
+  --layer-color-green-areas: var(--color-forest-500);
+  --layer-color-green-areas-fill: rgba(82, 183, 136, 0.35);
+  --layer-color-water: var(--color-water-500);
+  --layer-color-water-fill: rgba(0, 150, 199, 0.4);
+  --layer-color-impact: var(--color-accent);
+  --layer-color-impact-fill: rgba(231, 111, 81, 0.45);
+  --layer-color-poi: var(--color-earth-600);
+  --layer-color-poi-fill: rgba(126, 101, 53, 0.45);
+  --layer-color-selected: var(--color-warning);
+  --layer-color-selected-fill: rgba(233, 196, 106, 0.55);
+}
+
+/* Dark mode (preparado, ativacao via prefers-color-scheme) */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg-base: var(--color-ink-900);
+    --color-bg-surface: var(--color-ink-800);
+    --color-bg-raised: var(--color-ink-700);
+    --color-bg-overlay: rgba(0, 0, 0, 0.7);
+
+    --color-text-primary: var(--color-ink-50);
+    --color-text-secondary: var(--color-ink-200);
+    --color-text-muted: var(--color-ink-400);
+    --color-text-inverse: var(--color-ink-900);
+
+    --color-border-subtle: var(--color-ink-700);
+    --color-border: var(--color-ink-600);
+    --color-border-strong: var(--color-ink-500);
+  }
+}
