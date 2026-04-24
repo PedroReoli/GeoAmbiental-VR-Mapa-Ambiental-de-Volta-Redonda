@@ -8,20 +8,15 @@ export function App() {
     <div className={styles.app}>
       <header className={styles.header}>
         <div className={styles.brand}>
-          <span className={styles.logo} aria-hidden>
-            <svg viewBox="0 0 24 24" width="22" height="22" fill="none">
-              <path
-                d="M12 2C7.5 6.5 5 10 5 14a7 7 0 1 0 14 0c0-4-2.5-7.5-7-12Z"
-                fill="currentColor"
-                opacity="0.85"
-              />
-              <path d="M12 7v12" stroke="#fff" strokeWidth="1.5" strokeLinecap="round" />
-            </svg>
-          </span>
+          <img src="/logo.png" alt="Volta Redonda" className={styles.logo} />
           <div className={styles.brandText}>
             <strong>{APP.name}</strong>
             <span>{APP.tagline}</span>
           </div>
+        </div>
+        <div className={styles.headerMeta}>
+          <span className={styles.metaLabel}>Volta Redonda</span>
+          <span className={styles.metaValue}>RJ</span>
         </div>
       </header>
       <main className={styles.main}>
