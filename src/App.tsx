@@ -1,7 +1,10 @@
 import { MapView } from '@/features/map';
 import { Sidebar } from '@/features/info-panel';
+import { EditorTrigger, EditorToolbar } from '@/features/editor';
 import { APP } from '@/shared/constants';
 import styles from './App.module.css';
+
+const isDev = import.meta.env.DEV;
 
 export function App() {
   return (
@@ -21,7 +24,8 @@ export function App() {
           </div>
         </div>
 
-        <nav className={styles.nav} aria-label="Links externos">
+        <nav className={styles.nav} aria-label="Acoes">
+          {isDev && <EditorTrigger />}
           <a
             href={APP.portfolioUrl}
             target="_blank"
@@ -49,6 +53,9 @@ export function App() {
           </a>
         </nav>
       </header>
+
+      {isDev && <EditorToolbar />}
+
       <main className={styles.main}>
         <Sidebar />
         <MapView />

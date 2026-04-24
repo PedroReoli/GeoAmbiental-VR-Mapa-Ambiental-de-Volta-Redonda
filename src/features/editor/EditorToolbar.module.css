@@ -1,0 +1,179 @@
+/* ============================================================
+   EDITOR TOOLBAR — slide-down abaixo da navbar (full-width).
+   Tema dark proprio (independente do escopo da sidebar).
+   ============================================================ */
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+  padding: var(--space-3) var(--space-5);
+  background: linear-gradient(180deg, #15273a 0%, #0d1b2a 100%);
+  border-bottom: 1px solid var(--color-warning);
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  color: #eef3f8;
+  position: relative;
+  z-index: var(--z-sticky);
+  animation: slideDown 220ms var(--easing-out);
+}
+
+@keyframes slideDown {
+  from { transform: translateY(-100%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* --- Section header --- */
+.section {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.sectionLabel {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-warning);
+}
+
+/* --- Layer buttons --- */
+.layerButtons {
+  display: flex;
+  gap: var(--space-1);
+  flex-wrap: wrap;
+}
+
+.layerButton {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 6px 12px;
+  background-color: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-md);
+  color: #cfd8e1;
+  font-size: var(--font-size-sm);
+  font-family: inherit;
+  cursor: pointer;
+  transition: all var(--transition-fast) var(--easing-default);
+}
+
+.layerButton:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+  border-color: var(--btn-accent);
+  color: #fff;
+}
+
+.layerButtonActive {
+  background-color: var(--btn-accent);
+  border-color: var(--btn-accent);
+  color: #fff;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.08);
+}
+
+.layerSwatch {
+  width: 10px;
+  height: 10px;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  flex-shrink: 0;
+}
+
+.layerButtonActive .layerSwatch {
+  background-color: #fff !important;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+.layerLabel {
+  font-weight: var(--font-weight-medium);
+}
+
+.layerGeom {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  opacity: 0.7;
+  font-family: var(--font-family-mono);
+}
+
+/* --- Divider --- */
+.divider {
+  width: 1px;
+  align-self: stretch;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* --- Drawing hint --- */
+.drawingHint {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 6px var(--space-3);
+  background-color: rgba(233, 196, 106, 0.12);
+  border: 1px solid rgba(233, 196, 106, 0.4);
+  border-radius: var(--radius-md);
+  color: #ffe7a3;
+  font-size: var(--font-size-sm);
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-warning);
+  box-shadow: 0 0 0 0 rgba(233, 196, 106, 0.6);
+  animation: pulse 1.4s ease-out infinite;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(233, 196, 106, 0.6); }
+  70% { box-shadow: 0 0 0 8px rgba(233, 196, 106, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(233, 196, 106, 0); }
+}
+
+.instructionText {
+  flex: 1;
+  font-family: var(--font-family-mono);
+  font-size: 12px;
+}
+
+.spacer {
+  flex: 1;
+  min-width: var(--space-3);
+}
+
+/* --- Save section --- */
+.saveSection {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.savedMsg {
+  font-size: var(--font-size-xs);
+  color: var(--color-forest-300);
+}
+
+.errorMsg {
+  font-size: var(--font-size-xs);
+  color: #ffb8b8;
+  font-weight: var(--font-weight-medium);
+}
+
+@media (max-width: 768px) {
+  .toolbar {
+    padding: var(--space-2) var(--space-3);
+    gap: var(--space-2);
+  }
+
+  .sectionLabel {
+    display: none;
+  }
+
+  .instructionText {
+    font-size: 11px;
+  }
+}

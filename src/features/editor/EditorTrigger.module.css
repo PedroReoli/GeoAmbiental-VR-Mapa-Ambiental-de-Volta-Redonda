@@ -1,0 +1,85 @@
+.trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 6px 12px;
+  border-radius: var(--radius-md);
+  background-color: rgba(233, 196, 106, 0.12);
+  border: 1px solid rgba(233, 196, 106, 0.4);
+  color: var(--color-warning);
+  font-size: var(--font-size-sm);
+  font-family: inherit;
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  transition: all var(--transition-fast) var(--easing-default);
+  position: relative;
+}
+
+.trigger:hover {
+  background-color: rgba(233, 196, 106, 0.2);
+  border-color: var(--color-warning);
+  color: #ffe7a3;
+  transform: translateY(-1px);
+}
+
+.triggerActive {
+  background-color: var(--color-warning);
+  color: #1a1a1a;
+  border-color: var(--color-warning);
+  box-shadow: 0 0 0 3px rgba(233, 196, 106, 0.25);
+}
+
+.triggerActive:hover {
+  background-color: #f3d68b;
+  color: #1a1a1a;
+  transform: none;
+}
+
+.label {
+  font-weight: var(--font-weight-semibold);
+}
+
+.devTag {
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 1px 5px;
+  border-radius: var(--radius-sm);
+  background-color: rgba(0, 0, 0, 0.3);
+  color: inherit;
+  font-weight: var(--font-weight-bold);
+  opacity: 0.85;
+}
+
+.triggerActive .devTag {
+  background-color: rgba(0, 0, 0, 0.18);
+  color: #1a1a1a;
+}
+
+.dirtyBadge {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 4px;
+  font-size: 10px;
+  font-weight: var(--font-weight-bold);
+  background-color: var(--color-accent);
+  color: #fff;
+  border-radius: var(--radius-full);
+  border: 2px solid #0d2818;
+  font-family: var(--font-family-mono);
+}
+
+@media (max-width: 768px) {
+  .label {
+    display: none;
+  }
+  .devTag {
+    display: none;
+  }
+}
