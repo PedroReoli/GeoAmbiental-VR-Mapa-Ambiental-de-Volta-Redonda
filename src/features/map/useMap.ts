@@ -13,6 +13,7 @@ import type { Geometry, Point } from 'ol/geom';
 
 import { LAYERS, MAP_CONFIG, VOLTA_REDONDA, type LayerId } from '@/shared/constants';
 import { useLayersStore } from '@/features/layers/layersStore';
+import { useEditorStore } from '@/features/editor/editorStore';
 import { getStyleFor } from './layerStyles';
 import type { SelectedFeature } from '@/shared/types';
 
@@ -141,11 +142,24 @@ export function useMap(): UseMapResult {
 
     mapRef.current = map;
 
+    // Registra map + layers no editor store (apenas dev — em prod o codigo
+    // do editor e tree-shaken porque EditorPanel nao e renderizado).
+    if (import.meta.env.DEV) {
+      const editor = useEditorStore.getState();
+      editor.setMap(map);
+      for (const [id, layer] of layerRefs.current.entries()) {
+        editor.registerLayer(id, layer);
+      }
+    }
+
     return () => {
       map.setTarget(undefined);
       mapRef.current = null;
       layerRefs.current.clear();
       selectedFeatureRef.current = null;
+      if (import.meta.env.DEV) {
+        useEditorStore.getState().setMap(null);
+      }
     };
   }, []);
 

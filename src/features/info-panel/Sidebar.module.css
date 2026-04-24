@@ -39,6 +39,17 @@
   font-weight: var(--font-weight-medium);
 }
 
+.devTag {
+  color: var(--color-warning);
+  font-weight: var(--font-weight-semibold);
+  text-transform: uppercase;
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  padding: 1px 6px;
+  border-radius: var(--radius-sm);
+  background-color: rgba(233, 196, 106, 0.15);
+}
+
 @media (max-width: 768px) {
   .sidebar {
     width: 100%;
