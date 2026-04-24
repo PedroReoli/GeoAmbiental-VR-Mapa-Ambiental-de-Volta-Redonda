@@ -4,22 +4,6 @@
     {
       "type": "Feature",
       "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -44.116494,
-          -22.513823
-        ]
-      },
-      "properties": {
-        "layer": "impact",
-        "id": "impact-1777000499941",
-        "name": "csn",
-        "severity": 5
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
         "type": "Polygon",
         "coordinates": [
           [

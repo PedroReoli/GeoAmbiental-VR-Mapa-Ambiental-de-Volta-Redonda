@@ -1,5 +1,20 @@
 {
   "type": "FeatureCollection",
-  "_notice": "Use o Editor (modo dev, navbar) para adicionar pontos de interesse.",
-  "features": []
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -44.106609,
+          -22.516548
+        ]
+      },
+      "properties": {
+        "layer": "poi",
+        "id": "poi-1777030979308",
+        "name": "Sider Shopping"
+      }
+    }
+  ]
 }
