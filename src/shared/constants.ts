@@ -33,6 +33,9 @@ export const LAYER_IDS = {
 
 export type LayerId = (typeof LAYER_IDS)[keyof typeof LAYER_IDS];
 
+// --- Tipos de geometria suportados pelo editor (Draw interaction do OL) ---
+export type DrawGeometryType = 'Point' | 'LineString' | 'Polygon';
+
 // --- Metadados das camadas (label, descrição, fonte de dados, cor) ---
 export interface LayerMeta {
   id: LayerId;
@@ -42,6 +45,8 @@ export interface LayerMeta {
   // Referência ao token CSS de cor (usado em legenda + estilos OL)
   colorVar: string;
   fillVar: string;
+  // Tipo de geometria que o editor cria nesta camada
+  geometryType: DrawGeometryType;
 }
 
 export const LAYERS: readonly LayerMeta[] = [
@@ -52,6 +57,7 @@ export const LAYERS: readonly LayerMeta[] = [
     dataUrl: '/data/green-areas.geojson',
     colorVar: '--layer-color-green-areas',
     fillVar: '--layer-color-green-areas-fill',
+    geometryType: 'Polygon',
   },
   {
     id: LAYER_IDS.WATER,
@@ -60,14 +66,16 @@ export const LAYERS: readonly LayerMeta[] = [
     dataUrl: '/data/water.geojson',
     colorVar: '--layer-color-water',
     fillVar: '--layer-color-water-fill',
+    geometryType: 'LineString',
   },
   {
     id: LAYER_IDS.IMPACT,
     label: 'Impacto Ambiental',
-    description: 'Pontos de impacto ambiental (simulado)',
+    description: 'Pontos de impacto ambiental',
     dataUrl: '/data/impact.geojson',
     colorVar: '--layer-color-impact',
     fillVar: '--layer-color-impact-fill',
+    geometryType: 'Point',
   },
   {
     id: LAYER_IDS.POI,
@@ -76,6 +84,7 @@ export const LAYERS: readonly LayerMeta[] = [
     dataUrl: '/data/poi.geojson',
     colorVar: '--layer-color-poi',
     fillVar: '--layer-color-poi-fill',
+    geometryType: 'Point',
   },
 ] as const;
 
