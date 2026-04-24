@@ -13,12 +13,11 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 28px;
-  height: 28px;
-  border-radius: var(--radius-full);
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-md);
   background-color: var(--color-ink-100);
   color: var(--color-text-muted);
-  font-size: var(--font-size-base);
   flex-shrink: 0;
 }
 

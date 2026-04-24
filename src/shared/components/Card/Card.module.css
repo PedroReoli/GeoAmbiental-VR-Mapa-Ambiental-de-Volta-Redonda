@@ -2,8 +2,15 @@
   background-color: var(--color-bg-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-sm);
+  box-shadow:
+    var(--shadow-sm),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
   overflow: hidden;
+  transition: border-color var(--transition-fast) var(--easing-default);
+}
+
+.card:hover {
+  border-color: var(--color-border-strong);
 }
 
 .header {
@@ -24,13 +31,27 @@
 }
 
 .title {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
   font-size: var(--font-size-xs);
   font-weight: var(--font-weight-semibold);
-  color: var(--color-text-muted);
+  color: var(--color-text-secondary);
   text-transform: uppercase;
   letter-spacing: 0.08em;
   margin: 0;
   line-height: var(--line-height-tight);
+}
+
+.title::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radius-full);
+  background-color: var(--card-accent, var(--color-forest-500));
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--card-accent, var(--color-forest-500)) 20%, transparent);
+  flex-shrink: 0;
 }
 
 .subtitle {

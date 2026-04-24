@@ -15,6 +15,7 @@ export function IbgeCard() {
           : data?.name ?? 'Volta Redonda • RJ'
       }
       padded={false}
+      style={{ '--card-accent': 'var(--color-water-400)' } as React.CSSProperties}
     >
       {status === 'loading' && (
         <div className={styles.center}>

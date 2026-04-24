@@ -10,10 +10,25 @@ export function FeatureCard() {
 
   if (!selected) {
     return (
-      <Card title="Seleção" subtitle="Nenhuma feature ativa" padded={false}>
+      <Card
+        title="Seleção"
+        subtitle="Nenhuma feature ativa"
+        padded={false}
+        style={{ '--card-accent': 'var(--color-ink-400)' } as React.CSSProperties}
+      >
         <div className={styles.empty}>
-          <span className={styles.emptyIcon} aria-hidden>◯</span>
-          <p>Clique em qualquer ponto, área ou linha do mapa para inspecionar.</p>
+          <span className={styles.emptyIcon} aria-hidden>
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none">
+              <path
+                d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"
+                stroke="currentColor"
+                strokeWidth="1.6"
+                strokeLinejoin="round"
+              />
+              <circle cx="12" cy="9" r="2.2" fill="currentColor" />
+            </svg>
+          </span>
+          <p>Clique em qualquer feature do mapa para inspecionar.</p>
         </div>
       </Card>
     );
@@ -38,6 +53,7 @@ export function FeatureCard() {
         {
           '--feature-accent': layerColor,
           '--feature-accent-fill': layerFill,
+          '--card-accent': layerColor,
         } as React.CSSProperties
       }
       className={styles.featureCard}
