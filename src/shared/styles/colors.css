@@ -75,6 +75,23 @@
   --color-border: var(--color-ink-200);
   --color-border-strong: var(--color-ink-300);
 
+  /* ============================================================
+     PANEL — superficies escuras usadas dentro da Sidebar.
+     Definidas independentes de prefers-color-scheme: a Sidebar
+     SEMPRE e dark para criar contraste com o mapa claro.
+     ============================================================ */
+  --color-panel-bg: #0d1b2a;
+  --color-panel-surface: #15273a;
+  --color-panel-surface-alt: #1a3047;
+  --color-panel-raised: #213b54;
+  --color-panel-border-subtle: #1f3145;
+  --color-panel-border: #2d4866;
+  --color-panel-border-strong: #406084;
+  --color-panel-text: #eef3f8;
+  --color-panel-text-strong: #ffffff;
+  --color-panel-text-secondary: #b8c5d3;
+  --color-panel-text-muted: #7c8fa3;
+
   /* Cores semanticas das camadas (usadas no OpenLayers e legenda) */
   --layer-color-green-areas: var(--color-forest-500);
   --layer-color-green-areas-fill: rgba(82, 183, 136, 0.35);
