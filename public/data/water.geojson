@@ -1,5 +1,68 @@
 {
   "type": "FeatureCollection",
-  "_notice": "Use o Editor (modo dev, navbar) para adicionar rios e corregos (linhas).",
-  "features": []
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -44.106126,
+            -22.518848
+          ],
+          [
+            -44.102644,
+            -22.517621
+          ],
+          [
+            -44.102405,
+            -22.517547
+          ]
+        ]
+      },
+      "properties": {
+        "layer": "water",
+        "id": "water-1777000605884",
+        "name": "Rio Brandão"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -44.100225,
+            -22.522703
+          ],
+          [
+            -44.101023,
+            -22.522065
+          ],
+          [
+            -44.102299,
+            -22.519879
+          ],
+          [
+            -44.102525,
+            -22.519068
+          ],
+          [
+            -44.102366,
+            -22.517055
+          ],
+          [
+            -44.101994,
+            -22.514747
+          ]
+        ]
+      },
+      "properties": {
+        "layer": "water",
+        "id": "water-1777000634796",
+        "name": "Rio Brandão",
+        "category": "RIO"
+      }
+    }
+  ]
 }
