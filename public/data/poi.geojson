@@ -1,0 +1,77 @@
+{
+  "type": "FeatureCollection",
+  "_mock": true,
+  "_notice": "DADOS ILUSTRATIVOS - nomes e coordenadas nao correspondem a realidade. Ver public/data/README.md.",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "poi-001",
+        "name": "POI 1 (mock)",
+        "layer": "poi",
+        "category": "orgao publico",
+        "description": "Ponto ilustrativo - substituir por dado real."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-44.1024, -22.5202]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "poi-002",
+        "name": "POI 2 (mock)",
+        "layer": "poi",
+        "category": "educacao",
+        "description": "Ponto ilustrativo - substituir por dado real."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-44.0975, -22.5150]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "poi-003",
+        "name": "POI 3 (mock)",
+        "layer": "poi",
+        "category": "transporte",
+        "description": "Ponto ilustrativo - substituir por dado real."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-44.0890, -22.5215]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "poi-004",
+        "name": "POI 4 (mock)",
+        "layer": "poi",
+        "category": "saude",
+        "description": "Ponto ilustrativo - substituir por dado real."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-44.0935, -22.5240]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "poi-005",
+        "name": "POI 5 (mock)",
+        "layer": "poi",
+        "category": "cultura",
+        "description": "Ponto ilustrativo - substituir por dado real."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-44.1005, -22.5180]
+      }
+    }
+  ]
+}

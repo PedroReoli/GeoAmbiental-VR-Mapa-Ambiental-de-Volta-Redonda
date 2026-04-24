@@ -1,0 +1,87 @@
+{
+  "type": "FeatureCollection",
+  "_mock": true,
+  "_notice": "DADOS ILUSTRATIVOS - coordenadas e nomes nao correspondem a realidade. Ver public/data/README.md.",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ga-001",
+        "name": "Area Verde 1 (mock)",
+        "layer": "green-areas",
+        "category": "parque urbano",
+        "description": "Poligono ilustrativo de area verde - substituir por dado real."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [-44.0978, -22.5235],
+          [-44.0962, -22.5235],
+          [-44.0958, -22.5252],
+          [-44.0982, -22.5252],
+          [-44.0978, -22.5235]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ga-002",
+        "name": "Area Verde 2 (mock)",
+        "layer": "green-areas",
+        "category": "bosque",
+        "description": "Poligono ilustrativo de bosque - substituir por dado real."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [-44.1100, -22.5175],
+          [-44.1075, -22.5170],
+          [-44.1068, -22.5195],
+          [-44.1095, -22.5198],
+          [-44.1100, -22.5175]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ga-003",
+        "name": "Area Verde 3 (mock)",
+        "layer": "green-areas",
+        "category": "praca",
+        "description": "Poligono ilustrativo de praca - substituir por dado real."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [-44.0892, -22.5188],
+          [-44.0878, -22.5188],
+          [-44.0878, -22.5198],
+          [-44.0892, -22.5198],
+          [-44.0892, -22.5188]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ga-004",
+        "name": "Area Verde 4 (mock)",
+        "layer": "green-areas",
+        "category": "reserva ambiental",
+        "description": "Poligono ilustrativo de reserva - substituir por dado real."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [-44.0750, -22.5050],
+          [-44.0680, -22.5045],
+          [-44.0670, -22.5095],
+          [-44.0735, -22.5105],
+          [-44.0750, -22.5050]
+        ]]
+      }
+    }
+  ]
+}

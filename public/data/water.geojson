@@ -1,0 +1,67 @@
+{
+  "type": "FeatureCollection",
+  "_mock": true,
+  "_notice": "DADOS ILUSTRATIVOS - coordenadas e nomes nao correspondem a realidade. Ver public/data/README.md.",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "wt-001",
+        "name": "Curso d'agua 1 (mock)",
+        "layer": "water",
+        "category": "rio principal",
+        "description": "Linha ilustrativa de rio - substituir por dado real (ANA / OSM)."
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-44.1310, -22.4920],
+          [-44.1180, -22.4995],
+          [-44.1050, -22.5085],
+          [-44.0930, -22.5170],
+          [-44.0810, -22.5235],
+          [-44.0680, -22.5300],
+          [-44.0540, -22.5370]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "wt-002",
+        "name": "Curso d'agua 2 (mock)",
+        "layer": "water",
+        "category": "corrego",
+        "description": "Linha ilustrativa de corrego - substituir por dado real."
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-44.1020, -22.5310],
+          [-44.0980, -22.5260],
+          [-44.0945, -22.5210],
+          [-44.0920, -22.5180]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "wt-003",
+        "name": "Curso d'agua 3 (mock)",
+        "layer": "water",
+        "category": "corrego",
+        "description": "Linha ilustrativa de corrego - substituir por dado real."
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-44.0840, -22.5380],
+          [-44.0810, -22.5310],
+          [-44.0790, -22.5260],
+          [-44.0780, -22.5235]
+        ]
+      }
+    }
+  ]
+}

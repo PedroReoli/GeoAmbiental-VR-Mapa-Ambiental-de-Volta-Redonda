@@ -1,0 +1,82 @@
+{
+  "type": "FeatureCollection",
+  "_mock": true,
+  "_notice": "DADOS ILUSTRATIVOS - pontos, severidades e categorias sao ficticios. Ver public/data/README.md.",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "im-001",
+        "name": "Impacto 1 (mock)",
+        "layer": "impact",
+        "category": "emissoes atmosfericas",
+        "severity": 4,
+        "description": "Ponto ilustrativo - substituir por dado real (IBAMA / INEA)."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-44.1150, -22.5095]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "im-002",
+        "name": "Impacto 2 (mock)",
+        "layer": "impact",
+        "category": "residuos solidos",
+        "severity": 3,
+        "description": "Ponto ilustrativo - substituir por dado real."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-44.0825, -22.5350]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "im-003",
+        "name": "Impacto 3 (mock)",
+        "layer": "impact",
+        "category": "erosao",
+        "severity": 5,
+        "description": "Ponto ilustrativo - substituir por dado real."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-44.0610, -22.5180]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "im-004",
+        "name": "Impacto 4 (mock)",
+        "layer": "impact",
+        "category": "qualidade da agua",
+        "severity": 4,
+        "description": "Ponto ilustrativo - substituir por dado real."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-44.0980, -22.5260]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "im-005",
+        "name": "Impacto 5 (mock)",
+        "layer": "impact",
+        "category": "supressao vegetal",
+        "severity": 2,
+        "description": "Ponto ilustrativo - substituir por dado real."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-44.0700, -22.5070]
+      }
+    }
+  ]
+}
