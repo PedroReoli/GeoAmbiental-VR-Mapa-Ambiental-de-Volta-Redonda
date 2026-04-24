@@ -1,0 +1,28 @@
+.wrapper {
+  position: relative;
+  flex: 1;
+  height: 100%;
+  min-width: 0;
+  background-color: var(--color-ink-100);
+  overflow: hidden;
+}
+
+.map {
+  width: 100%;
+  height: 100%;
+}
+
+.map :global(.ol-scale-line) {
+  background-color: rgba(255, 255, 255, 0.85);
+  border-radius: var(--radius-sm);
+  bottom: var(--space-4);
+  left: var(--space-4);
+  padding: 2px;
+}
+
+.map :global(.ol-scale-line-inner) {
+  color: var(--color-ink-800);
+  border-color: var(--color-ink-800);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-xs);
+}
