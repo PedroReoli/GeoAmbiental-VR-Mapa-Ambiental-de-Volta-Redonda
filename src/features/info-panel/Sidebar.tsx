@@ -12,7 +12,11 @@ export function Sidebar() {
         <IbgeCard />
       </div>
       <footer className={styles.footer}>
-        Dados: OpenStreetMap • IBGE • simulações
+        <span>OpenStreetMap</span>
+        <span className={styles.dot} aria-hidden>•</span>
+        <span>IBGE</span>
+        <span className={styles.dot} aria-hidden>•</span>
+        <span className={styles.mockTag}>dados mock</span>
       </footer>
     </aside>
   );

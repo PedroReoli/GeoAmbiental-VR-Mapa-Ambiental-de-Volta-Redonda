@@ -8,8 +8,13 @@ export function IbgeCard() {
 
   return (
     <Card
-      title="Volta Redonda / RJ"
-      subtitle={data?.referenceYear ? `Dados IBGE • ${data.referenceYear}` : 'Dados IBGE'}
+      title="Dados IBGE"
+      subtitle={
+        data?.referenceYear
+          ? `${data.name ?? 'Volta Redonda'} • ${data.referenceYear}`
+          : data?.name ?? 'Volta Redonda • RJ'
+      }
+      padded={false}
     >
       {status === 'loading' && (
         <div className={styles.center}>
@@ -25,16 +30,24 @@ export function IbgeCard() {
       )}
 
       {status === 'success' && data && (
-        <dl className={styles.list}>
-          <Stat label="População estimada" value={formatInteger(data.population)} unit="hab" />
-          <Stat label="Área territorial" value={formatDecimal(data.area, 3)} unit="km²" />
-          <Stat
-            label="Densidade demográfica"
-            value={formatDecimal(data.density, 2)}
-            unit="hab/km²"
-          />
-          <Stat label="Mesorregião" value={data.region} />
-        </dl>
+        <>
+          <div className={styles.grid}>
+            <Stat label="População" value={formatInteger(data.population)} unit="hab" />
+            <Stat label="Área" value={formatDecimal(data.area, 1)} unit="km²" />
+            <Stat
+              label="Densidade"
+              value={formatDecimal(data.density, 1)}
+              unit="hab/km²"
+            />
+            <Stat label="Estado" value={data.state ?? '—'} />
+          </div>
+          {data.region && (
+            <div className={styles.region}>
+              <span className={styles.regionLabel}>Mesorregião</span>
+              <span className={styles.regionValue}>{data.region}</span>
+            </div>
+          )}
+        </>
       )}
     </Card>
   );
@@ -43,11 +56,11 @@ export function IbgeCard() {
 function Stat({ label, value, unit }: { label: string; value: string; unit?: string }) {
   return (
     <div className={styles.stat}>
-      <dt className={styles.label}>{label}</dt>
-      <dd className={styles.value}>
-        <span>{value}</span>
+      <span className={styles.label}>{label}</span>
+      <span className={styles.value}>
+        {value}
         {unit && <span className={styles.unit}>{unit}</span>}
-      </dd>
+      </span>
     </div>
   );
 }

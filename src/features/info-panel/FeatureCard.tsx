@@ -10,42 +10,50 @@ export function FeatureCard() {
 
   if (!selected) {
     return (
-      <Card title="Detalhes" subtitle="Clique em um elemento do mapa">
-        <p className={styles.empty}>
-          Selecione qualquer ponto, área ou linha do mapa para ver as informações detalhadas.
-        </p>
+      <Card title="Seleção" subtitle="Nenhuma feature ativa" padded={false}>
+        <div className={styles.empty}>
+          <span className={styles.emptyIcon} aria-hidden>◯</span>
+          <p>Clique em qualquer ponto, área ou linha do mapa para inspecionar.</p>
+        </div>
       </Card>
     );
   }
 
   const layerMeta = LAYERS.find((l) => l.id === selected.layer);
   const layerColor = layerMeta ? `var(${layerMeta.colorVar})` : undefined;
+  const layerFill = layerMeta ? `var(${layerMeta.fillVar})` : undefined;
   const [lon, lat] = selected.coordinates;
 
   return (
     <Card
-      title={selected.name}
-      subtitle={
-        <Badge color={layerColor}>{selected.layerLabel}</Badge>
-      }
+      title="Seleção"
+      subtitle={selected.name}
+      padded={false}
       actions={
         <Button size="sm" variant="ghost" onClick={() => clear(null)} aria-label="Fechar detalhes">
           ×
         </Button>
       }
+      style={
+        {
+          '--feature-accent': layerColor,
+          '--feature-accent-fill': layerFill,
+        } as React.CSSProperties
+      }
+      className={styles.featureCard}
     >
+      <div className={styles.tag}>
+        <Badge color={layerColor}>{selected.layerLabel}</Badge>
+        {selected.category && <span className={styles.category}>{selected.category}</span>}
+      </div>
+
       <dl className={styles.list}>
-        {selected.category && (
-          <Row label="Categoria">
-            <span>{selected.category}</span>
-          </Row>
-        )}
         {selected.severity != null && (
           <Row label="Severidade">
             <SeverityBar value={selected.severity} />
           </Row>
         )}
-        <Row label="Tipo geométrico">
+        <Row label="Geometria">
           <span className={styles.mono}>{selected.geometryType}</span>
         </Row>
         <Row label="Coordenadas">
@@ -75,14 +83,16 @@ function SeverityBar({ value }: { value: number }) {
   const clamped = Math.max(1, Math.min(max, Math.round(value)));
   return (
     <div className={styles.severity} aria-label={`Severidade ${clamped} de ${max}`}>
-      {Array.from({ length: max }, (_, i) => (
-        <span
-          key={i}
-          className={styles.severityCell}
-          data-active={i < clamped ? 'true' : 'false'}
-          data-level={clamped}
-        />
-      ))}
+      <div className={styles.severityCells}>
+        {Array.from({ length: max }, (_, i) => (
+          <span
+            key={i}
+            className={styles.severityCell}
+            data-active={i < clamped ? 'true' : 'false'}
+            data-level={clamped}
+          />
+        ))}
+      </div>
       <span className={styles.severityValue}>{clamped}/{max}</span>
     </div>
   );

@@ -1,19 +1,41 @@
 .actions {
   display: flex;
-  gap: var(--space-1);
+  gap: 2px;
 }
 
 .list {
   list-style: none;
   margin: 0;
-  padding: 0;
+  padding: var(--space-1);
   display: flex;
   flex-direction: column;
-  gap: var(--space-3);
 }
 
 .item {
+  position: relative;
   margin: 0;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-md);
+  transition: background-color var(--transition-fast) var(--easing-default);
+}
+
+.item:hover {
+  background-color: var(--color-ink-50);
+}
+
+.item[data-active='true'] {
+  background-color: var(--row-accent-fill);
+}
+
+.item[data-active='true']::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: var(--space-2);
+  bottom: var(--space-2);
+  width: 3px;
+  background-color: var(--row-accent);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
 }
 
 .labelRow {
@@ -22,10 +44,16 @@
   gap: var(--space-2);
 }
 
+.labelText {
+  color: var(--color-text-primary);
+  font-weight: var(--font-weight-medium);
+}
+
 .swatch {
-  width: 12px;
-  height: 12px;
-  border-radius: var(--radius-sm);
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  width: 10px;
+  height: 10px;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(0, 0, 0, 0.12);
   flex-shrink: 0;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.6);
 }

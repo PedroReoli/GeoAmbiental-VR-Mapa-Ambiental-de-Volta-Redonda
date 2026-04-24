@@ -9,13 +9,15 @@ export function LayerPanel() {
   const showAll = useLayersStore((s) => s.showAll);
   const hideAll = useLayersStore((s) => s.hideAll);
 
-  const allVisible = LAYERS.every((l) => visibility[l.id]);
-  const noneVisible = LAYERS.every((l) => !visibility[l.id]);
+  const activeCount = LAYERS.filter((l) => visibility[l.id]).length;
+  const allVisible = activeCount === LAYERS.length;
+  const noneVisible = activeCount === 0;
 
   return (
     <Card
       title="Camadas"
-      subtitle="Ative ou desative as camadas do mapa"
+      subtitle={`${activeCount} de ${LAYERS.length} ativas`}
+      padded={false}
       actions={
         <div className={styles.actions}>
           <Button size="sm" variant="ghost" onClick={showAll} disabled={allVisible}>
@@ -30,19 +32,26 @@ export function LayerPanel() {
       <ul className={styles.list}>
         {LAYERS.map((layer) => {
           const color = `var(${layer.colorVar})`;
+          const fill = `var(${layer.fillVar})`;
+          const active = visibility[layer.id];
           return (
-            <li key={layer.id} className={styles.item}>
+            <li
+              key={layer.id}
+              className={styles.item}
+              data-active={active}
+              style={{ '--row-accent': color, '--row-accent-fill': fill } as React.CSSProperties}
+            >
               <Toggle
-                checked={visibility[layer.id]}
+                checked={active}
                 onChange={() => toggleLayer(layer.id)}
+                accentColor={color}
                 label={
                   <span className={styles.labelRow}>
                     <span className={styles.swatch} style={{ backgroundColor: color }} aria-hidden />
-                    <span>{layer.label}</span>
+                    <span className={styles.labelText}>{layer.label}</span>
                   </span>
                 }
                 description={layer.description}
-                accentColor={color}
               />
             </li>
           );

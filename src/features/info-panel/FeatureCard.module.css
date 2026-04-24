@@ -1,45 +1,94 @@
+.featureCard {
+  border-top: 3px solid var(--feature-accent, var(--color-border));
+}
+
 .empty {
-  font-size: var(--font-size-sm);
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+}
+
+.emptyIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-ink-100);
   color: var(--color-text-muted);
+  font-size: var(--font-size-base);
+  flex-shrink: 0;
+}
+
+.empty p {
   margin: 0;
-  line-height: var(--line-height-relaxed);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  line-height: var(--line-height-base);
+}
+
+.tag {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4) 0;
+  flex-wrap: wrap;
+}
+
+.category {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  text-transform: lowercase;
 }
 
 .list {
   display: flex;
   flex-direction: column;
-  gap: var(--space-3);
-  margin: 0;
+  gap: 0;
+  margin: var(--space-3) 0 0;
 }
 
 .row {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  align-items: baseline;
+  gap: var(--space-3);
+  padding: var(--space-2) var(--space-4);
+  border-top: 1px solid var(--color-border-subtle);
+}
+
+.row:last-child {
+  padding-bottom: var(--space-3);
 }
 
 .rowLabel {
-  font-size: var(--font-size-xs);
+  font-size: 10px;
   color: var(--color-text-muted);
   text-transform: uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.06em;
   font-weight: var(--font-weight-medium);
+  margin: 0;
 }
 
 .rowValue {
   margin: 0;
   font-size: var(--font-size-sm);
   color: var(--color-text-primary);
+  min-width: 0;
 }
 
 .mono {
   font-family: var(--font-family-mono);
   font-size: var(--font-size-xs);
   color: var(--color-text-secondary);
+  word-break: break-word;
 }
 
 .description {
   margin: 0;
+  font-size: var(--font-size-xs);
   line-height: var(--line-height-relaxed);
   color: var(--color-text-secondary);
 }
@@ -47,14 +96,19 @@
 .severity {
   display: flex;
   align-items: center;
-  gap: var(--space-1);
+  gap: var(--space-2);
+}
+
+.severityCells {
+  display: flex;
+  gap: 3px;
 }
 
 .severityCell {
   display: block;
-  width: 18px;
+  width: 14px;
   height: 8px;
-  border-radius: var(--radius-sm);
+  border-radius: 2px;
   background-color: var(--color-ink-200);
 }
 
@@ -75,8 +129,8 @@
 }
 
 .severityValue {
-  margin-left: var(--space-2);
   font-family: var(--font-family-mono);
-  font-size: var(--font-size-xs);
+  font-size: 10px;
   color: var(--color-text-muted);
+  font-variant-numeric: tabular-nums;
 }

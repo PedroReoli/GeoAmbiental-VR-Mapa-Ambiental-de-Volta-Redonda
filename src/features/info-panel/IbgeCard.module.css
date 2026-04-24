@@ -1,7 +1,7 @@
 .center {
   display: flex;
   justify-content: center;
-  padding: var(--space-4) 0;
+  padding: var(--space-6) 0;
 }
 
 .error {
@@ -10,53 +10,84 @@
   gap: var(--space-2);
   font-size: var(--font-size-sm);
   color: var(--color-text-secondary);
+  padding: var(--space-4);
 }
 
 .error p {
   margin: 0;
 }
 
-.list {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-3);
-  margin: 0;
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
 }
 
 .stat {
   display: flex;
   flex-direction: column;
-  gap: 2px;
-  padding-bottom: var(--space-3);
-  border-bottom: 1px dashed var(--color-border-subtle);
+  gap: 4px;
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--color-border-subtle);
 }
 
-.stat:last-child {
+.stat:nth-child(odd) {
+  border-right: 1px solid var(--color-border-subtle);
+}
+
+.stat:nth-last-child(-n + 2) {
   border-bottom: 0;
-  padding-bottom: 0;
 }
 
 .label {
   font-size: var(--font-size-xs);
   color: var(--color-text-muted);
   text-transform: uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.05em;
   font-weight: var(--font-weight-medium);
+  line-height: 1;
 }
 
 .value {
-  margin: 0;
   display: flex;
   align-items: baseline;
-  gap: var(--space-2);
+  gap: 4px;
   font-size: var(--font-size-lg);
   font-weight: var(--font-weight-semibold);
   color: var(--color-text-primary);
   font-variant-numeric: tabular-nums;
+  line-height: 1.1;
+  flex-wrap: wrap;
 }
 
 .unit {
-  font-size: var(--font-size-xs);
+  font-size: 10px;
   font-weight: var(--font-weight-normal);
   color: var(--color-text-muted);
+  letter-spacing: 0.02em;
+}
+
+.region {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border-top: 1px solid var(--color-border-subtle);
+  background-color: var(--color-ink-50);
+}
+
+.regionLabel {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: var(--font-weight-medium);
+}
+
+.regionValue {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+  text-align: right;
 }
