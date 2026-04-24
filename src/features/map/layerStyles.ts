@@ -39,6 +39,25 @@ function buildPolygonStyle(stroke: string, fill: string, width = 2): Style {
   });
 }
 
+/**
+ * Estilo "misto" — preparado para Point + Polygon + LineString num
+ * mesmo Style. OL usa apenas a chave compativel com a geometria de
+ * cada feature (image para Point, fill para Polygon, stroke para
+ * ambos). Util quando a camada aceita varios tipos (ex: impact).
+ */
+function buildMixedStyle(stroke: string, fill: string, opts: { pointRadius?: number; width?: number } = {}): Style {
+  const { pointRadius = 8, width = 2 } = opts;
+  return new Style({
+    image: new CircleStyle({
+      radius: pointRadius,
+      fill: new Fill({ color: fill }),
+      stroke: new Stroke({ color: stroke, width: 2 }),
+    }),
+    fill: new Fill({ color: fill }),
+    stroke: new Stroke({ color: stroke, width }),
+  });
+}
+
 function buildStyleSet(id: LayerId): StyleSet {
   const selectedStroke = cssVar('--layer-color-selected', '#e9c46a');
   const selectedFill = cssVar('--layer-color-selected-fill', 'rgba(233,196,106,0.55)');
@@ -62,9 +81,10 @@ function buildStyleSet(id: LayerId): StyleSet {
     case LAYER_IDS.IMPACT: {
       const stroke = cssVar('--layer-color-impact', '#e76f51');
       const fill = cssVar('--layer-color-impact-fill', 'rgba(231,111,81,0.45)');
+      // Layer aceita Polygon e Point — estilo misto cobre os dois.
       return {
-        default: buildPointStyle(stroke, fill, 8),
-        selected: buildPointStyle(selectedStroke, selectedFill, 11),
+        default: buildMixedStyle(stroke, fill, { pointRadius: 8, width: 2 }),
+        selected: buildMixedStyle(selectedStroke, selectedFill, { pointRadius: 11, width: 3 }),
       };
     }
     case LAYER_IDS.POI: {
