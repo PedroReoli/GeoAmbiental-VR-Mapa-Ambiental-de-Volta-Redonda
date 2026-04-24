@@ -84,12 +84,13 @@
 .successMsg {
   margin: 0;
   font-size: var(--font-size-xs);
-  color: var(--color-success);
+  color: var(--color-forest-300);
 }
 
 .successMsg code {
   font-family: var(--font-family-mono);
-  background-color: var(--color-forest-50);
+  background-color: rgba(82, 183, 136, 0.18);
+  color: var(--color-forest-200);
   padding: 1px 4px;
   border-radius: var(--radius-sm);
   font-size: 11px;
@@ -98,11 +99,11 @@
 .errorMsg {
   margin: 0;
   font-size: var(--font-size-xs);
-  color: var(--color-danger);
-  background-color: #fde2e2;
+  color: #ffb8b8;
+  background-color: rgba(214, 40, 40, 0.18);
   padding: var(--space-2) var(--space-3);
   border-radius: var(--radius-sm);
-  border: 1px solid #f5a7a7;
+  border: 1px solid rgba(214, 40, 40, 0.45);
 }
 
 .help {
