@@ -89,5 +89,7 @@ export const APP = {
   name: 'GeoAmbiental VR',
   shortName: 'GeoVR',
   tagline: 'Mapa Ambiental de Volta Redonda',
+  author: 'Pedro Reoli',
+  portfolioUrl: 'https://pedroreis.vercel.app/',
   repo: 'https://github.com/',
 } as const;
